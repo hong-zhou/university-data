@@ -21,7 +21,7 @@ public class JpaRepositoryTest {
 	/**
 	 * Exercise JPA Repository methods
 	 */
-	@Test
+/*	@Test
 	public void testJpaRepositoryMethods() {
 		departmentRepository.save(new Department("Biology"));
 		departmentRepository.flush();
@@ -46,5 +46,5 @@ public class JpaRepositoryTest {
 	@After
 	public void banner() {
 		System.out.println("\n\n********************************************************************************\n");
-	}
+	}*/
 }

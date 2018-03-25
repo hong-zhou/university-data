@@ -10,9 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name = "Department")
@@ -25,19 +24,19 @@ public class Department {
 	@Column
 	private String name;
 	
+	@OneToOne
+	private Staff chair;
+	
 	@OneToMany(mappedBy = "department", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Course> courses = new ArrayList<>();
 	
 	protected Department() {}
 	
-	public Department(String name) {
+	public Department(String name, Staff chair) {
 		this.name = name;
+		this.chair = chair;
 	}
 
-	@Override
-	public String toString() {
-		return "Department [id=" + id + ", name=" + name + ", courses=" + courses + "]";
-	}
 
 	public Integer getId() {
 		return id;
@@ -51,5 +50,24 @@ public class Department {
 		courses.add(course);
 	}
 	
+	public void setName(String name) {
+        this.name = name;
+    }
+	
+    public void setChair(Staff chair) {
+        this.chair = chair;
+    }
+    
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
 
+    @Override
+    public String toString() {
+        return "Department{" +
+                "chair=" + chair +
+                ", name='" + name + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }
